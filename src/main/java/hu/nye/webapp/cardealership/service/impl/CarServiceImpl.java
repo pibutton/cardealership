@@ -30,4 +30,12 @@ public class CarServiceImpl implements CarService {
                 .collect(Collectors.toList());
 
     }
+
+    @Override
+    public CarDTO create(CarDTO carDTO) {
+        Car carToSave = modelMapper.map(carDTO, Car.class);
+        carToSave.setId(null);
+        Car savedCar = carRepository.save(carToSave);
+        return modelMapper.map(savedCar, CarDTO.class);
+    }
 }

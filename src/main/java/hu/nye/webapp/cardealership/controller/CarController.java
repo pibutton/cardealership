@@ -3,6 +3,7 @@ package hu.nye.webapp.cardealership.controller;
 
 import hu.nye.webapp.cardealership.dto.CarDTO;
 import hu.nye.webapp.cardealership.service.CarService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,5 +40,9 @@ public class CarController {
         //        "Mazda"
         // );
     }
+    @RequestMapping(path = "/cars", method = RequestMethod.POST)
+    public CarDTO create(@RequestBody CarDTO carDTO) {
+        return carService.create(carDTO);
 
+    }
 }

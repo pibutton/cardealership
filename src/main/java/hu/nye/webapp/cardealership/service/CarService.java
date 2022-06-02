@@ -9,4 +9,5 @@ public interface CarService {
 
     List<CarDTO> findAll();
 
+    CarDTO create(CarDTO carDTO);
 }
