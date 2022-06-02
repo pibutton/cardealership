@@ -42,9 +42,10 @@ public class CarController {
     public CarDTO create(@RequestBody CarDTO carDTO) {
         return carService.create(carDTO);
     }
-    @RequestMapping(path = "/{"id"}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-
+        carService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

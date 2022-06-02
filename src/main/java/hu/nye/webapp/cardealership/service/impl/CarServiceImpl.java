@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,5 +38,17 @@ public class CarServiceImpl implements CarService {
         carToSave.setId(null);
         Car savedCar = carRepository.save(carToSave);
         return modelMapper.map(savedCar, CarDTO.class);
+    }
+
+    @Override
+    public void delete(Long id) {
+        Optional<Car> optionalCar = carRepository.findById(id);
+
+        if (optionalCar.isPresent()) {
+            Car carToDelete = optionalCar.get();
+            carRepository.delete(carToDelete);
+        }  else {
+            throw new RuntimeException();
+        }
     }
 }
